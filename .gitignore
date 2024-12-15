@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.local
+
+# Editor specific files
+.idea/
+.vscode/
+*.sublime-workspace
+
+# Temp files
+*.swp
+*.temp
+
+# Dependency directories
+package-lock.json
+yarn.lock
+
+# Coverage files
+coverage/
+
+# Mac specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
