@@ -1,11 +1,31 @@
-import { fetchAllCountriesData, fetchGlobalData, fetchStatesData } from "./covidApiClient";
+import { 
+  fetchAllCountriesData, 
+  fetchGlobalData, 
+  fetchStatesData, 
+  fetchGlobalVaccineData, 
+  fetchCountryVaccineData 
+} from "./covidApiClient";
 
-export const fetchAllData = async () => {
-  const [allCountriesData, globalDataResponse, statesDataResponse] = await Promise.all([
+export const fetchAllData = async (country: string ) => {
+  const [
+    allCountriesData, 
+    globalDataResponse, 
+    statesDataResponse, 
+    globalVaccineData, 
+    countryVaccineData
+  ] = await Promise.all([
     fetchAllCountriesData(),
     fetchGlobalData(),
-    fetchStatesData("USA"),
+    fetchStatesData(country),
+    fetchGlobalVaccineData(),
+    fetchCountryVaccineData(country),
   ]);
 
-  return { allCountriesData, globalDataResponse, statesDataResponse };
+  return { 
+    allCountriesData, 
+    globalDataResponse, 
+    statesDataResponse, 
+    globalVaccineData, 
+    countryVaccineData 
+  };
 };

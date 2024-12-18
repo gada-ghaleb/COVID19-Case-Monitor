@@ -29,3 +29,14 @@ export const fetchStatesData = async (iso: string = "USA") => {
   const response = await apiClient.get("/states");
   return response.data;
 };
+// Fetch global vaccination data
+export const fetchGlobalVaccineData = async () => {
+  const response = await apiClient.get("/vaccine/coverage");
+  return response.data; 
+};
+
+// Fetch vaccination data for a specific country
+export const fetchCountryVaccineData = async (country: string) => {
+  const response = await apiClient.get("/vaccine/coverage/countries");
+  return response.data; 
+};

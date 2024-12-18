@@ -31,7 +31,7 @@ const MapComponent: React.FC = () => {
     return <p>Error: Unable to load data context</p>;
   }
 
-  const { countriesData, lastUpdate, loading, error } = dataContext;
+  const { countriesData, loading, error } = dataContext;
 
   if (loading) return <LoadingSpinner />;
 
@@ -58,7 +58,7 @@ const MapComponent: React.FC = () => {
     <MapContainer
       center={[20, 0]}
       zoom={2}
-      className="h-full w-full rounded-lg"
+      className="h-full w-full rounded-lg "
       worldCopyJump={true}
     >
       <TileLayer

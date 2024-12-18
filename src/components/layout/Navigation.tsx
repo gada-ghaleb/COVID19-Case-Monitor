@@ -11,11 +11,12 @@ import {
   HomeIcon,
 
 } from "@heroicons/react/24/outline";
-import Dashboard from "../dashboard/Dashboard";
+import { Link } from "react-router-dom";
 
 
 const navigation = [
-  { name: 'Dashboard', href: '/Dashboard', icon: HomeIcon, current: true },
+  { name: 'Dashboard', path:'/', icon: HomeIcon, current: true },
+  { name: 'Vaccine Stats', path:'/vaccine', icon: HomeIcon, current: false },
  
 ]
 
@@ -25,7 +26,7 @@ function classNames(...classes: string[]): string {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("Dashboard");
+  
 
   return (
     <>
@@ -59,8 +60,8 @@ export default function Example() {
                 <ul role="list" className="flex flex-1 flex-col gap-y-7">
                   {navigation.map((item) => (
                     <li key={item.name}>
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.path}
                         className={classNames(
                           item.current
                             ? "bg-gray-50 text-gray-800"
@@ -77,7 +78,7 @@ export default function Example() {
                           )}
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                   <li className="mt-auto">
@@ -113,8 +114,8 @@ export default function Example() {
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.path}
                     className={classNames(
                       item.current
                         ? "bg-gray-50 text-gray-800"
@@ -131,7 +132,7 @@ export default function Example() {
                       )}
                     />
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="mt-auto">
@@ -156,8 +157,9 @@ export default function Example() {
 
       {/* Main Content */}
       <div className="lg:pl-72">
-        <div className="sticky top-0 z-40 flex h-16 items-center bg-white px-4 border-b border-gray-200 shadow-sm">
-          <button
+      <div className="absolute top-0 z-40 flex h-16 items-center bg-white px-4 border-b border-gray-200 lg:border-none shadow-sm lg:hidden w-full">
+         
+         <button
             type="button"
             onClick={() => setSidebarOpen(true)}
             className="-m-2.5 p-2.5 text-gray-800 lg:hidden"
@@ -165,12 +167,9 @@ export default function Example() {
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
+          
         </div>
-        <main className="py-4">
-          <div className="px-4 sm:px-6 lg:px-8">
-            {activeSection === "Dashboard" && <Dashboard />}
-          </div>
-        </main>
+        
       </div>
     </>
   );

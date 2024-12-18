@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../dataContext/DataContext";
 import LoadingSpinner from "../common/LoadingSpinner";
-import { motion } from "framer-motion";
-import AnimatedDiv from "../common/AnimatedDiv";
 
 const StatesCards: React.FC = () => {
   const context = useContext(DataContext);
@@ -25,8 +23,9 @@ const StatesCards: React.FC = () => {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    {summaryData.map((item) => (
+     {summaryData.map((item, index) => (
       <div
+        key={index}
         className="bg-white p-6 shadow-md rounded-lg text-center"
       >
         <h2 className={`text-l font-semibold ${item.color}`}>
