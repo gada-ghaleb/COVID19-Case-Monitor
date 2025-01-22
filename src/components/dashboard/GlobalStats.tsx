@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import { DataContext } from '../../dataContext/DataContext';
-import { Doughnut } from 'react-chartjs-2';
-import LoadingSpinner from '../common/LoadingSpinner';
+import React, { useContext } from "react";
+import { DataContext } from "../../dataContext/DataContext";
+import { Doughnut } from "react-chartjs-2";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 const GlobalStats: React.FC = () => {
   const context = useContext(DataContext);
 
   if (!context) {
-    throw new Error('DataContext must be used within a DataProvider');
+    throw new Error("DataContext must be used within a DataProvider");
   }
 
   const { globalData, loading, error } = context;
@@ -17,13 +17,14 @@ const GlobalStats: React.FC = () => {
     return <p>There was an error loading the data. Please try again later.</p>;
 
   const chartData = {
-    labels: ['Confirmed Cases', 'Deaths'],
+    labels: ["Confirmed Cases", "Deaths"],
     datasets: [
       {
-        label: 'Global Totals',
+        label: "Global Totals",
         data: [globalData?.confirmed, globalData?.deaths],
-        backgroundColor: ['rgb(164, 179, 252)', 'rgb(192, 131, 252)'],
-        borderWidth: 1,
+        backgroundColor: ["rgb(164, 179, 252, 0.5)", "rgb(192, 131, 252)"],
+        borderColor: ["rgb(164, 179, 252)", "rgb(192, 131, 252)"],
+        borderWidth: 2,
       },
     ],
   };
@@ -34,14 +35,14 @@ const GlobalStats: React.FC = () => {
     plugins: {
       legend: {
         labels: {
-          color: 'rgba(255, 255, 255)',
+          color: "rgba(255, 255, 255)",
         },
       },
     },
   };
 
   return (
-    <div  className="p-3 relative isolate rounded-lg bg-gray-800">
+    <div className=" relative isolate p-6 w-full h-96 bg-gray-800 gshadow-lg rounded-lg text-white">
       <svg
         aria-hidden="true"
         className="absolute rounded-lg inset-0 -z-10 h-full w-full stroke-gray-600"
@@ -63,9 +64,8 @@ const GlobalStats: React.FC = () => {
           strokeWidth={0}
         />
       </svg>
-      <div className="p-3 relative w-full text-white">
-        <Doughnut data={chartData} options={options} className="w-full h-96" />
-      </div>
+
+      <Doughnut data={chartData} options={options} className="w-full h-96" />
     </div>
   );
 };

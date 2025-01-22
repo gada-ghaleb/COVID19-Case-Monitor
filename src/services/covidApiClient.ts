@@ -17,22 +17,20 @@ apiClient.interceptors.response.use(
 // Fetch data of all countries
 export const fetchAllCountriesData = async () => {
   const response = await apiClient.get("/countries");
+  console.log('countriFetsc:', response.data) 
   return response.data;
 };
+
 // Fetch global data
 export const fetchGlobalData = async () => {
   const response = await apiClient.get("/all");
   return response.data;
 };
+
 // Fetch data of states (e.g., USA)
 export const fetchStatesData = async (iso: string = "USA") => {
   const response = await apiClient.get("/states");
   return response.data;
-};
-// Fetch global vaccination data
-export const fetchGlobalVaccineData = async () => {
-  const response = await apiClient.get("/vaccine/coverage");
-  return response.data; 
 };
 
 // Fetch vaccination data for a specific country
@@ -40,3 +38,6 @@ export const fetchCountryVaccineData = async (country: string) => {
   const response = await apiClient.get("/vaccine/coverage/countries");
   return response.data; 
 };
+
+
+

@@ -4,11 +4,13 @@ import React from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import LoadingSpinner from "../common/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 const MapComponent: React.FC = () => {
   const dataContext = useContext(DataContext);
   const [geoJsonData, setGeoJsonData] = useState<any | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const geoJsonUrl =
     "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson";
@@ -45,7 +47,7 @@ const MapComponent: React.FC = () => {
 
   const getCountryStyle = (countryName: string) => ({
     fillColor:
-      hoveredCountry === countryName ? "rgb(192, 131, 252)" : "transparent",
+      hoveredCountry === countryName ? "rgb(192, 131, 252, 0.5)" : "transparent",
     weight: hoveredCountry === countryName ? 2 : 1,
     color:
       hoveredCountry === countryName
@@ -58,7 +60,7 @@ const MapComponent: React.FC = () => {
     <MapContainer
       center={[20, 0]}
       zoom={2}
-      className="h-full w-full rounded-lg "
+      className="h-full w-full rounded-lg"
       worldCopyJump={true}
     >
       <TileLayer
@@ -82,7 +84,13 @@ const MapComponent: React.FC = () => {
             layer.on({
               mouseover: () => setHoveredCountry(feature.properties.ADMIN),
               mouseout: () => setHoveredCountry(null),
+              click: () => {
+                const countryName = encodeURIComponent(feature.properties.ADMIN); // Codifica il nome del paese
+                console.log(`Navigating to /country/${countryName}`);
+                navigate(`/country/${countryName}`);
+              },
             });
+           
 
             layer.bindTooltip(
               `
@@ -93,6 +101,7 @@ const MapComponent: React.FC = () => {
                 <p><strong>Deaths:</strong> ${
                   countryData?.deaths?.toLocaleString() || "N/A"
                 }</p>
+           
               `,
               { permanent: false, className: "tooltip-custom" }
             );

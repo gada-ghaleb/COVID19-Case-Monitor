@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 const navigation = [
   { name: 'Dashboard', path:'/', icon: HomeIcon, current: true },
-  { name: 'Vaccine Stats', path:'/vaccine', icon: HomeIcon, current: false },
+  { name: 'Vaccine Stats', path:'/vaccines', icon: HomeIcon, current: false },
  
 ]
 

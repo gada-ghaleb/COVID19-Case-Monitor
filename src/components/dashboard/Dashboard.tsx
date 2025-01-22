@@ -55,8 +55,6 @@ const Dashboard: React.FC = () => {
               <GlobalStats />
             </AnimatedDiv>
           </div>
-
-   
           <AnimatedDiv className="bg-white p-6 shadow-md rounded-lg">
             <SectionHeader
               title="Global COVID-19 Map"

@@ -1,14 +1,21 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import CountryDetails from "../Details/CountryDetails";
 import Dashboard from "../dashboard/Dashboard";
-import VaccineStats from "../vaccine/VaccineStats";
 
 const AppRoutes: React.FC = () => {
   return (
+    
+   
     <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/vaccine" element={<VaccineStats />} />
-    </Routes>
+    {/* Rotta con layout della mappa */}
+    <Route path="/" element={<Dashboard/>} />
+
+    {/* Rotta con layout dei dettagli */}
+    <Route path="/country/:countryName" element={<CountryDetails />} />
+  </Routes>
+  
+
   );
 };
 
