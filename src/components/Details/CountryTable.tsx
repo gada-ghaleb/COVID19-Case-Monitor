@@ -89,14 +89,17 @@ const CountryTable: React.FC<CountryStatsTableProps> = ({
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {covidData.map((data, index) => (
-                  <tr key={index}>
-                    <td className="py-4 text-sm font-sans font-medium text-white">
+                  <tr
+                  key={index}
+                  className={index % 2 === 0 ? "text-gray-400" : "text-white"}
+                >
+                    <td className="py-4 text-sm font-sans font-medium">
                       {data.label}
                     </td>
-                    <td className="py-4 text-sm font-sans text-white">
+                    <td className="py-4 text-sm font-sans">
                       {data.value.toLocaleString()}
                     </td>
-                    <td className="py-4 text-sm font-sans text-white">
+                    <td className="py-4 text-sm font-sans">
                       {data.lastUpdated}
                     </td>
                   </tr>

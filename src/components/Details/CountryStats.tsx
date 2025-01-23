@@ -19,9 +19,9 @@ const CountryStats: React.FC<GlobalCountryProps> = ({
       {
         label: "COVID-19 Statistics",
        data: [confirmed,  deaths],
-        backgroundColor: [ "rgb(192, 196, 204, 0.5)", "rgb(157, 164, 176, 0.5)"],
-        borderColor: ["rgb(192, 196, 204)", "rgb(157, 164, 176)"],
-        borderWidth: 1,
+        backgroundColor: ["rgb(164, 179, 252, 0.5)", "rgb(192, 131, 252)"],
+        borderColor: ["rgb(164, 179, 252, 0.5)", "rgb(192, 131, 252)"],
+        borderWidth: 2,
       },
     ],
   };
@@ -39,6 +39,27 @@ const CountryStats: React.FC<GlobalCountryProps> = ({
   };
   return (
     <div className="relative isolate p-6 w-full h-96 bg-gray-800 shadow-lg  rounded-lg">
+         <svg
+        aria-hidden="true"
+        className="absolute rounded-lg inset-0 -z-10 h-full w-full stroke-gray-600"
+      >
+        <defs>
+          <pattern
+            id="background-pattern"
+            width={30}
+            height={30}
+            patternUnits="userSpaceOnUse"
+          >
+            <path d="M.5 200V.5H200" fill="none" />
+          </pattern>
+        </defs>
+        <rect
+          fill="url(#background-pattern)"
+          width="100%"
+          height="100%"
+          strokeWidth={0}
+        />
+      </svg>
       <Pie data={data} options={options} className="w-full h-96" />
     </div>
   );

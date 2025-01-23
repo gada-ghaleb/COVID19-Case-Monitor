@@ -53,11 +53,6 @@ const CovidCountryData: React.FC<CountryDataProps> = ({
           color: "rgba(255, 255, 255)",
         },
       },
-      title: {
-        display: true,
-        text: `COVID-19 Stats for Country`, 
-        color: "rgba(255, 255, 255)", 
-      },
     },
     scales: {
       x: {

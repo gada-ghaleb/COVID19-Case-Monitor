@@ -115,7 +115,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
           country: data.country || "Unknown",
           total: Number(Object.values(data.timeline).pop() || 0),
         }));
-        console.log(countryVaccineData)
         setCountryVaccineData(countryVaccineData);
       
       } catch (error) {
