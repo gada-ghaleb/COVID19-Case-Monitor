@@ -7,6 +7,9 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import AnimatedDiv from "../common/AnimatedDiv";
 import CountryTable from "./CountryTable";
 import CountryStats from "./CountryStats";
+import ErrorComponent from "../common/ErrorComponent";
+
+
 const CountryDetails: React.FC = () => {
   const { countryName } = useParams(); 
   const dataContext = useContext(DataContext);
@@ -29,11 +32,11 @@ const CountryDetails: React.FC = () => {
   );
   if (!countryData) {
     return (
-      <p>No data available for {decodeURIComponent(countryName || "")}.</p>
+      <ErrorComponent message={`No data available for ${decodeURIComponent(countryName || "")}.`} />
     );
   }
   return (
-    <div className="bg-neutral-50 py-24 sm:py-32">
+    <div className="py-24 sm:py-32">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <AnimatedDiv className="space-y-8 mt-6">
           <h1 className="text-4xl font-bold mb-16 text-center">

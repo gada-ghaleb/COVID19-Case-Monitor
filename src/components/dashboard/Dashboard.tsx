@@ -22,9 +22,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <div
-      className="bg-neutral-50 py-24 sm:py-32">
+      className="py-24 sm:py-32">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <AnimatedDiv className="text-center pb-10">
+        <AnimatedDiv className="text-center">
           <h2  className="text-balance text-4xl font-semibold tracking-tight text-gray-800 sm:text-5xl">
             COVID-19 Data Overview
           </h2>

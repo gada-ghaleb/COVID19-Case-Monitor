@@ -6,9 +6,13 @@ import AppRoutes from "./components/routes/AppRoutes";
 function App() {
   return (
     <DataProvider>
-      <AppRoutes />
+      <div className="min-h-screen flex flex-col bg-neutral-50">
       <Navigation />
+      <div className="flex-grow">
+      <AppRoutes />
+      </div>
       <Footer />
+      </div>
     </DataProvider>
   );
 }
