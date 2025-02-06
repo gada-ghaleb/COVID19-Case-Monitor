@@ -19,8 +19,8 @@ const CountryStats: React.FC<GlobalCountryProps> = ({
       {
         label: "COVID-19 Statistics",
        data: [confirmed,  deaths],
-        backgroundColor: ["rgb(164, 179, 252, 0.5)", "rgb(192, 131, 252)"],
-        borderColor: ["rgb(164, 179, 252, 0.5)", "rgb(192, 131, 252)"],
+        backgroundColor: ["rgb(164, 179, 252, 0.3)", "rgb(192, 131, 252)"],
+        borderColor: ["rgb(164, 179, 252, 0.3)", "rgb(192, 131, 252)"],
         borderWidth: 2,
       },
     ],
@@ -33,12 +33,13 @@ const CountryStats: React.FC<GlobalCountryProps> = ({
       legend: {
         labels: {
           color: "rgba(255, 255, 255)",
+          font: { size: 14 },
         },
       },
     },
   };
   return (
-    <div className="relative isolate p-6 w-full h-96 bg-gray-800 shadow-lg  rounded-lg">
+    <div className="relative isolate p-6 w-full h-96 bg-gray-800 shadow-lg rounded-lg cursor-pointer">
          <svg
         aria-hidden="true"
         className="absolute rounded-lg inset-0 -z-10 h-full w-full stroke-gray-600"

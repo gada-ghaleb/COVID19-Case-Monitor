@@ -14,6 +14,7 @@ import {
   Legend,
 } from "chart.js";
 import LoadingSpinner from "../common/LoadingSpinner";
+import ErrorMessage from "../common/ErrorMessage";
 
 ChartJS.register(
   CategoryScale,
@@ -37,7 +38,7 @@ const StatesData: React.FC = () => {
   const dataContext = useContext(DataContext);
 
   if (!dataContext) {
-    return <p>Error: Unable to load data context</p>;
+    return <ErrorMessage message="Error: Unable to load data context" />;
   }
 
   const { statesData, loading, error } = dataContext as {
@@ -48,10 +49,8 @@ const StatesData: React.FC = () => {
   };
 
   if (loading) return <LoadingSpinner />;
-  if (error)
-    return <p>There was an error loading the data. Please try again later.</p>;
-  if (!statesData || statesData.length === 0) {
-    return <p>No data available for states.</p>;
+  if (error) {
+    return <ErrorMessage message="Unable to load COVID-19 data for U.S. states. Please try again later." />
   }
 
   const chartData = {
@@ -62,7 +61,7 @@ const StatesData: React.FC = () => {
         data: statesData.map((state) => state.confirmed),
         backgroundColor: "rgb(164, 179, 252, 0.5)",
         borderColor: "rgb(164, 179, 252)",
-        borderWidth: 1,
+        borderWidth: 1, 
       },
       {
         label: "Deaths",
@@ -97,14 +96,15 @@ const StatesData: React.FC = () => {
     plugins: {
       legend: {
         labels: { 
-          color: "rgb(255, 255, 255)" 
+          color: "rgb(255, 255, 255)",
+          font: { size: 14 },
         },
       },
     },
   };
 
   return (
-    <div className="p-3 relative w-full h-96 bg-gray-800 gshadow-lg rounded-lg text-white ">
+    <div className="p-3 cursor-pointer relative w-full h-96 bg-gray-800 gshadow-lg rounded-lg text-white ">
       <Line data={chartData} options={options} />
     </div>
   );

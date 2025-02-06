@@ -1,37 +1,42 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../dataContext/DataContext";
 import LoadingSpinner from "../common/LoadingSpinner";
+import ErrorMessage from "../common/ErrorMessage";
+import { FaVirus, FaHeartbeat, FaSkull, FaProcedures } from "react-icons/fa";
 
 const StatesCards: React.FC = () => {
   const context = useContext(DataContext);
 
   if (!context) {
-    throw new Error("DataContext must be used within a DataProvider");
+    return <ErrorMessage message="Error: DataContext is not available." />;
   }
 
   const { globalData, loading, error } = context;
 
-  if (loading) return <LoadingSpinner />;
-  if (error) return <p>Error loading data. Try again later.</p>;
+  if (loading) return <LoadingSpinner />;  
+  if (error) {
+    return <ErrorMessage message="Unable to display COVID-19 statistics. Please try again later." />;
+  }
 
   const summaryData = [
-    { label: "Confirmed Cases", value: globalData?.confirmed, color: "text-gray-800" },
-    { label: "Active Cases", value: globalData?.active, color: "text-gray-800" },
-    { label: "Deaths", value: globalData?.deaths, color: "text-gray-700" },
-    { label: "Recovered", value: globalData?.recovered, color: "text-gray-800" },
+    { label: "Confirmed Cases", value: globalData?.confirmed, icon: <FaVirus />  },
+    { label: "Active Cases", value: globalData?.active,  icon: <FaProcedures />  },
+    { label: "Deaths", value: globalData?.deaths, icon: <FaSkull /> },
+    { label: "Recovered", value: globalData?.recovered, icon: <FaHeartbeat /> },
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 cursor-pointer">
      {summaryData.map((item, index) => (
       <div
         key={index}
-        className="bg-white p-6 shadow-md rounded-lg text-center"
+        className="bg-gray-800 p-6 shadow-lg rounded-lg text-center transition transform hover:scale-105 hover:shadow-xl"
       >
-        <h2 className={`text-l font-semibold ${item.color}`}>
+        <div className={`text-4xl text-white mb-2`}>{item.icon}</div>
+        <h2 className={`text-xl font-bold text-white`}>
           {item.value?.toLocaleString() || "N/A"}
         </h2>
-        <p className="text-gray-500">{item.label}</p>
+        <p className="text-gray-400 text-sm">{item.label}</p>
       </div>
     ))}
   </div>

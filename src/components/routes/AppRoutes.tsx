@@ -8,10 +8,7 @@ const AppRoutes: React.FC = () => {
     
    
     <Routes>
-    {/* Rotta con layout della mappa */}
     <Route path="/" element={<Dashboard/>} />
-
-    {/* Rotta con layout dei dettagli */}
     <Route path="/country/:countryName" element={<CountryDetails />} />
   </Routes>
   

@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../common/ErrorMessage";
 
 const MapComponent: React.FC = () => {
   const dataContext = useContext(DataContext);
@@ -12,13 +13,13 @@ const MapComponent: React.FC = () => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const geoJsonUrl =
+  const GEOJSON_URL =
     "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson";
 
   useEffect(() => {
     const fetchGeoJson = async () => {
       try {
-        const response = await fetch(geoJsonUrl);
+        const response = await fetch(GEOJSON_URL);
         const data = await response.json();
         setGeoJsonData(data);
       } catch (error) {
@@ -26,11 +27,11 @@ const MapComponent: React.FC = () => {
       }
     };
 
-    fetchGeoJson();
-  }, []);
+    if (!geoJsonData) fetchGeoJson();
+  }, [geoJsonData]);
 
   if (!dataContext) {
-    return <p>Error: Unable to load data context</p>;
+    return <ErrorMessage message="Error: Unable to load data context" />;
   }
 
   const { countriesData, loading, error } = dataContext;
@@ -38,16 +39,17 @@ const MapComponent: React.FC = () => {
   if (loading) return <LoadingSpinner />;
 
   if (error) {
-    return <p>Error loading data: {error}</p>;
-  }
+    return <ErrorMessage message="The global COVID-19 map is unavailable.  Please try again later." />
+   }
 
-  if (!countriesData || countriesData.length === 0) {
-    return <p>No data available for countries.</p>;
-  }
+  if (!countriesData || countriesData.length === 0)
+    <ErrorMessage message="No data available for countries." />;
 
   const getCountryStyle = (countryName: string) => ({
     fillColor:
-      hoveredCountry === countryName ? "rgb(192, 131, 252, 0.5)" : "transparent",
+      hoveredCountry === countryName
+        ? "rgb(192, 131, 252, 0.5)"
+        : "transparent",
     weight: hoveredCountry === countryName ? 2 : 1,
     color:
       hoveredCountry === countryName
@@ -60,7 +62,7 @@ const MapComponent: React.FC = () => {
     <MapContainer
       center={[20, 0]}
       zoom={2}
-      className="h-full w-full rounded-lg"
+      className="h-full w-full rounded-lg cursor-pointer"
       worldCopyJump={true}
     >
       <TileLayer
@@ -85,23 +87,25 @@ const MapComponent: React.FC = () => {
               mouseover: () => setHoveredCountry(feature.properties.ADMIN),
               mouseout: () => setHoveredCountry(null),
               click: () => {
-                const countryName = encodeURIComponent(feature.properties.ADMIN); // Codifica il nome del paese
+                const countryName = encodeURIComponent(
+                  feature.properties.ADMIN
+                ); 
                 console.log(`Navigating to /country/${countryName}`);
                 navigate(`/country/${countryName}`);
               },
             });
-           
 
             layer.bindTooltip(
               `
-                <h3>${feature.properties.ADMIN}</h3>
-                <p><strong>Confirmed:</strong> ${
-                  countryData?.confirmed?.toLocaleString() || "N/A"
-                }</p>
-                <p><strong>Deaths:</strong> ${
-                  countryData?.deaths?.toLocaleString() || "N/A"
-                }</p>
-           
+              <div class="p-2 text-sm bg-gray-800 text-white rounded shadow-md border border-gray-700">
+              <h3 class="font-bold">${feature.properties.ADMIN}</h3>
+              <p><strong>Confirmed:</strong> ${
+                countryData?.confirmed?.toLocaleString() || "N/A"
+              }</p>
+              <p><strong>Deaths:</strong> ${
+                countryData?.deaths?.toLocaleString() || "N/A"
+              }</p>
+              </div>
               `,
               { permanent: false, className: "tooltip-custom" }
             );

@@ -40,6 +40,7 @@ const CovidCountryData: React.FC<CountryDataProps> = ({
         borderColor: "rgb(164, 179, 252, 0.5)", 
         backgroundColor: "rgb(192, 131, 252)",
         tension: 0.4,
+        
       },
     ],
   };
@@ -51,6 +52,7 @@ const CovidCountryData: React.FC<CountryDataProps> = ({
       legend: {
         labels: {
           color: "rgba(255, 255, 255)",
+          font: { size: 14 },
         },
       },
     },
@@ -67,7 +69,7 @@ const CovidCountryData: React.FC<CountryDataProps> = ({
   };
 
   return (
-    <div className="p-3 relative w-full h-96 bg-gray-800 shadow-lg rounded-lg">
+    <div className="p-3 cursor-pointer relative w-full h-96 bg-gray-800 shadow-lg rounded-lg">
       <Line data={data} options={options} />
     </div>
   );

@@ -15,14 +15,13 @@ const CountryDetails: React.FC = () => {
   const dataContext = useContext(DataContext);
 
   if (!dataContext) {
-    return <p>Error: Unable to load data context</p>;
+    return <ErrorComponent message="Error: Unable to load data context" />;
   }
 
   const { countriesData, countryVaccineData, loading, error } = dataContext;
 
   if (loading) return <LoadingSpinner />;
-  if (error)
-    return <p>There was an error loading the data. Please try again later.</p>;
+  if (error) return <ErrorComponent message="There was an error loading the data. Please try again later." />;
 
   const countryData = countriesData.find(
     (country) => country.country === countryName
@@ -31,18 +30,18 @@ const CountryDetails: React.FC = () => {
     (vaccine) => vaccine.country === countryName
   );
   if (!countryData) {
-    return (
-      <ErrorComponent message={`No data available for ${decodeURIComponent(countryName || "")}.`} />
-    );
-  }
+    return <ErrorComponent message={`No data available for ${decodeURIComponent(countryName || "")}.`} />
+  };
   return (
     <div className="py-24 sm:py-32">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <AnimatedDiv className="space-y-8 mt-6">
+        <div className="space-y-8 mt-6">
+          <AnimatedDiv>
           <h1 className="text-4xl font-bold mb-16 text-center">
             Details for {decodeURIComponent(countryName || "")}
           </h1>
-          <AnimatedDiv className="p-6 shadow-md rounded-lg">
+          </AnimatedDiv>
+          <AnimatedDiv className="bg-white p-6 shadow-md rounded-lg">
             <div className="rounded-lg">
              <CovidCountryData
               active={countryData.active}
@@ -73,7 +72,7 @@ const CountryDetails: React.FC = () => {
               />
             </AnimatedDiv>
           </div>
-        </AnimatedDiv>
+        </div>
       </div>
     </div>
   );

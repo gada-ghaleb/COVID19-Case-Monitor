@@ -1,4 +1,5 @@
 import React from "react";
+import { FaHeartbeat, FaProcedures, FaSkull, FaSyringe, FaUsers, FaVirus } from "react-icons/fa";
 
 interface CountryStatsTableProps {
   confirmed: number;
@@ -20,96 +21,43 @@ const CountryTable: React.FC<CountryStatsTableProps> = ({
   date,
 }) => {
   const covidData = [
-    {
-      label: "Confirmed Cases",
-      value: confirmed,
-      lastUpdated: date,
-    },
-    {
-      label: "Deaths",
-      value: deaths,
-      lastUpdated: date,
-    },
-    {
-      label: "Recovered Patients",
-      value: recovered,
-      lastUpdated: date,
-    },
-    {
-      label: "Active Cases",
-      value: active,
-      lastUpdated: date,
-    },
-    {
-      label: "Total Population",
-      value: population,
-      lastUpdated: date,
-    },
-    {
-      label: "Vaccinated People",
-      value: vaccinated,
-      lastUpdated: date,
-    },
+    { label: "Confirmed Cases", value: confirmed, icon: <FaVirus /> },
+    { label: "Deaths", value: deaths, icon: <FaSkull /> },
+    { label: "Recovered Patients", value: recovered, icon: <FaHeartbeat />},
+    { label: "Active Cases", value: active, icon: <FaProcedures />},
+    { label: "Total Population", value: population, icon: <FaUsers />},
+    { label: "Vaccinated People", value: vaccinated, icon: <FaSyringe /> },
   ];
 
   return (
-    <div className="relative isolate p-6 w-full h-96 bg-gray-800 shadow-lg rounded-lg text-white">
-      <div className="mx-auto max-w-6xl p-6">
-        <div className="sm:px-6 lg:px-8">
-          <div className="sm:flex">
-            <div className="sm:flex-auto">
-              <h1 className="text-base font-sans font-semibold text-white pb-4">
-                Global COVID-19 Stats
-              </h1>
-            </div>
-          </div>
-          <div className="overflow-auto max-h-64 custom-scrollbar">
-            <table className="min-w-full divide-y divide-white">
-              <thead>
-                <tr>
-                  <th
-                    scope="col"
-                    className="py-3.5 text-left text-sm font-sans font-semibold text-white"
-                  >
-                    Statistic
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 text-left text-sm font-sans font-semibold text-white"
-                  >
-                    Value
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 text-left text-sm font-sans font-semibold text-white"
-                  >
-                    Last Updated
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {covidData.map((data, index) => (
-                  <tr
-                  key={index}
-                  className={index % 2 === 0 ? "text-gray-400" : "text-white"}
-                >
-                    <td className="py-4 text-sm font-sans font-medium">
-                      {data.label}
-                    </td>
-                    <td className="py-4 text-sm font-sans">
-                      {data.value.toLocaleString()}
-                    </td>
-                    <td className="py-4 text-sm font-sans">
-                      {data.lastUpdated}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <div className="relative isolate p-6 w-full h-auto bg-gray-800 shadow-lg rounded-lg text-white cursor-pointer">
+    <div className="mx-auto max-w-6xl p-6">
+      <h1 className="text-lg font-semibold text-center text-white mb-4">Global COVID-19 Stats</h1>
+      <div className="overflow-auto max-h-64 custom-scrollbar">
+        <table className="min-w-full divide-y divide-gray-600">
+          <thead>
+            <tr className="text-left bg-gray-700 text-white">
+              <th className="py-3 px-4 text-sm font-semibold">Statistic</th>
+              <th className="py-3 px-4 text-sm font-semibold">Value</th>
+              <th className="py-3 px-4 text-sm font-semibold">Last Updated</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-600">
+            {covidData.map((data, index) => (
+              <tr key={index} className="hover:bg-gray-700 transition duration-200">
+                <td className="py-4 px-4 text-sm flex items-center space-x-2">
+                  <span className={`text-lg text-indigo-400`}>{data.icon}</span>
+                  <span>{data.label}</span>
+                </td>
+                <td className="py-4 px-4 text-sm font-semibold">{data.value.toLocaleString()}</td>
+                <td className="py-4 px-4 text-sm">{date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
   );
 };
 
