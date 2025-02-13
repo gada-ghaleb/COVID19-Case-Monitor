@@ -53,7 +53,19 @@ npm install
 npm start
  ```
 
---
+---
+
 ### 🔗 API Source
 This project fetches real-time COVID-19 data from [Disease.sh API.](https://disease.sh/).
+
+---
+
+### 📌 Deployment on Netlify
+To deploy this project, follow these steps:
+
+1. Push the latest code to **GitHub**.
+2. Go to **Netlify** and log in.
+3. Click **"New Site from Git"** and connect your repository.
+4. Select the **main branch** and deploy!
+
  
