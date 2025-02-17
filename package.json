@@ -2,7 +2,6 @@
   "name": "covid19-case-monitor",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://disease.sh",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
