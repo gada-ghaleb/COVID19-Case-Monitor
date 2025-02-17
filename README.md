@@ -29,15 +29,6 @@
 
 ---
 
-## 📸 Screenshots
-| Dashboard | Country Details |
-|-----------|----------------|
-| ![Dashboard](https://your-image-link.com) | ![Country Details](https://your-image-link.com) |
-
-*(Replace the above links with actual screenshots hosted on GitHub or an image-sharing service.)*
-
----
-
 ## 🛠 Setup & Installation
 ### **🔹 1️⃣ Clone the Repository**
 ```sh
@@ -52,7 +43,6 @@ npm install
 ```sh
 npm start
  ```
-
 ---
 
 ### 🔗 API Source
