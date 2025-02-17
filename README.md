@@ -14,7 +14,7 @@
 ---
 
 ## 🚀 Live Demo
-🔗 **[Deployed on Netlify](https://your-netlify-link.com)** *(Replace with your actual deployment link)*
+🔗 **[Deployed on Netlify](https://covid19-case-monitor.netlify.app/)** 
 
 ---
 
