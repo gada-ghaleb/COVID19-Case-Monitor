@@ -13,36 +13,46 @@ const StatesCards: React.FC = () => {
 
   const { globalData, loading, error } = context;
 
-  if (loading) return <LoadingSpinner />;  
+  if (loading) return <LoadingSpinner />;
   if (error) {
-    return <ErrorMessage message="Unable to display COVID-19 statistics. Please try again later." />;
+    return (
+      <ErrorMessage message="Unable to display COVID-19 statistics. Please try again later." />
+    );
   }
 
   const summaryData = [
-    { label: "Confirmed Cases", value: globalData?.confirmed, icon: <FaVirus />  },
-    { label: "Active Cases", value: globalData?.active,  icon: <FaProcedures />  },
+    {
+      label: "Confirmed Cases",
+      value: globalData?.confirmed,
+      icon: <FaVirus />,
+    },
+    {
+      label: "Active Cases",
+      value: globalData?.active,
+      icon: <FaProcedures />,
+    },
     { label: "Deaths", value: globalData?.deaths, icon: <FaSkull /> },
     { label: "Recovered", value: globalData?.recovered, icon: <FaHeartbeat /> },
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 sm:px-6 md:px-8 mt-4 sm:mt-6 cursor-pointer">
-     {summaryData.map((item, index) => (
-      <div
-        key={index}
-        className="bg-gray-800 p-3 sm:p-4 md:p-6 shadow-lg rounded-lg text-center transition transform hover:scale-105 hover:shadow-xl"
-      >
-        <div className={`text-3xl sm:text-4xl text-white mb-2`}>{item.icon}</div>
-        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold text-white`}>
-          {item.value?.toLocaleString() || "N/A"}
-        </h2>
-        <p className="text-gray-400 text-xs sm:text-sm">{item.label}</p>
-      </div>
-    ))}
-  </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 cursor-pointer">
+      {summaryData.map((item, index) => (
+        <div
+          key={index}
+          className="bg-gray-800 p-4 sm:p-6 shadow-lg rounded-lg text-center transition-transform duration-300 transform hover:scale-105"
+        >
+          <div className="text-3xl sm:text-4xl text-white mb-2">
+            {item.icon}
+          </div>
+          <h2 className="text-lg sm:text-xl font-bold text-white">
+            {item.value?.toLocaleString() || "N/A"}
+          </h2>
+          <p className="text-gray-400 text-xs sm:text-sm">{item.label}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 
 export default StatesCards;
-
-
