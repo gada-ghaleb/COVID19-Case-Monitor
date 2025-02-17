@@ -26,17 +26,17 @@ const StatesCards: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 cursor-pointer">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 sm:px-6 md:px-8 mt-4 sm:mt-6 cursor-pointer">
      {summaryData.map((item, index) => (
       <div
         key={index}
-        className="bg-gray-800 p-6 shadow-lg rounded-lg text-center transition transform hover:scale-105 hover:shadow-xl"
+        className="bg-gray-800 p-3 sm:p-4 md:p-6 shadow-lg rounded-lg text-center transition transform hover:scale-105 hover:shadow-xl"
       >
-        <div className={`text-4xl text-white mb-2`}>{item.icon}</div>
-        <h2 className={`text-xl font-bold text-white`}>
+        <div className={`text-3xl sm:text-4xl text-white mb-2`}>{item.icon}</div>
+        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold text-white`}>
           {item.value?.toLocaleString() || "N/A"}
         </h2>
-        <p className="text-gray-400 text-sm">{item.label}</p>
+        <p className="text-gray-400 text-xs sm:text-sm">{item.label}</p>
       </div>
     ))}
   </div>
