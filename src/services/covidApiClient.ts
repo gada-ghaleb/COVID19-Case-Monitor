@@ -17,7 +17,6 @@ apiClient.interceptors.response.use(
 // Fetch data of all countries
 export const fetchAllCountriesData = async () => {
   const response = await apiClient.get("/countries");
-  console.log('countriFetsc:', response.data) 
   return response.data;
 };
 

@@ -90,7 +90,6 @@ const MapComponent: React.FC = () => {
                 const countryName = encodeURIComponent(
                   feature.properties.ADMIN
                 ); 
-                console.log(`Navigating to /country/${countryName}`);
                 navigate(`/country/${countryName}`);
               },
             });
