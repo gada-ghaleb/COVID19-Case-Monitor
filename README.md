@@ -2,7 +2,7 @@
 
 📊 A **React-based COVID-19 Dashboard** providing **global and U.S. state-level statistics** with interactive charts and a world map visualization.
 
----
+
 
 ## 🌟 Features
 - 📈 **Real-time COVID-19 statistics** (global & state-wise)
@@ -11,12 +11,12 @@
 - 📱 **Fully responsive design** (desktop & mobile-friendly)
 - 🎨 **Modern UI/UX** with Tailwind CSS & animations
 
----
+
 
 ## 🚀 Live Demo
 🔗 **[Deployed on Netlify](https://covid19-case-monitor.netlify.app/)** 
 
----
+
 
 ## 🛠 Technologies Used
 - **React.js** ⚛️
@@ -27,35 +27,25 @@
 - **Framer Motion (for animations)** ✨
 - **Disease.sh API (for COVID-19 data)** 🦠
 
----
+## 📊 COVID-19 Chart
+
+Here is a preview of the COVID-19 data visualization:
+
+![COVID-19 Chart](https://github.com/user-attachments/assets/c33f63eb-3064-481a-b151-802d796327ee)
 
 ## 🛠 Setup & Installation
-### **🔹 1️⃣ Clone the Repository**
-```sh
-git clone https://github.com/gada-ghaleb/COVID19-Case-Monitor.git
-cd COVID19-Case-Monitor
- ```
-### **🔹 2️⃣ Install Dependencies**
+### **🔹 1️⃣ Install Dependencies**
 ```sh
 npm install
  ```
-### **🔹 3️⃣ Start the Development Server**
+### **🔹 2️⃣ Start the Development Server**
 ```sh
 npm start
  ```
----
 
 ### 🔗 API Source
 This project fetches real-time COVID-19 data from [Disease.sh API.](https://disease.sh/).
 
----
 
-### 📌 Deployment on Netlify
-To deploy this project, follow these steps:
-
-1. Push the latest code to **GitHub**.
-2. Go to **Netlify** and log in.
-3. Click **"New Site from Git"** and connect your repository.
-4. Select the **main branch** and deploy!
 
  
